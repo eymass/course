@@ -1,0 +1,1 @@
+(cd FE && npm i) & (cd BE && npm i)

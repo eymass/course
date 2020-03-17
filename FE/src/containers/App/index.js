@@ -8,38 +8,21 @@
  */
 
 import React from 'react';
-import PropTypes from 'prop-types';
 import { compose } from 'redux';
-import { BrowserRouter } from 'react-router-dom';
-import { ThemeProvider } from '@material-ui/core';
-import { createStructuredSelector } from 'reselect';
-import AuthProvider from 'containers/AuthProvider';
 import { connect } from 'react-redux';
-import {makeSelectTheme} from './meta/selectors';
+import KeepItSimpleButPowerfull from "components/Common/KeepItSimpleButPowerfull/KeepItSimpleButPowerfull";
+import LoginPage from "../LoginPage";
 
-function App({ theme }) {
+function App() {
 
   return (
-      <ThemeProvider theme={theme}>
-        <BrowserRouter>
-            <AuthProvider />
-        </BrowserRouter>
-      </ThemeProvider>
+        <LoginPage />
   );
 }
 
-App.propTypes = {
-  theme: PropTypes.object.isRequired,
-  location: PropTypes.object.isRequired,
-};
+App.propTypes = {};
 
-const mapStateToProps = createStructuredSelector({
-  theme: makeSelectTheme(),
-});
-
-const withConnect = connect(
-  mapStateToProps,
-);
+const withConnect = connect();
 
 export default compose(
   withConnect,

@@ -1,0 +1,1 @@
+(cd FE && npm start) & (cd BE && npm run dev)

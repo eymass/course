@@ -1,1 +1,0 @@
-export const USERPAGE_DEFAULT = 'USERPAGE_DEFAULT';

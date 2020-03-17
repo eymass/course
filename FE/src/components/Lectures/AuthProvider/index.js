@@ -11,7 +11,7 @@ import { createStructuredSelector } from 'reselect';
 import makeSelectAuthProvider, {
   makeSelectIsAuthenticated,
 } from './meta/selectors';
-import Routes from './meta/Routes';
+import Routes from './components/Routes';
 
 /**
  * Authentication main Container.
