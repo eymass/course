@@ -1,1 +1,2 @@
+npm i react-dev-utils -g
 (cd FE && npm i) & (cd BE && npm i)
