@@ -3,7 +3,7 @@ import {makeStyles} from "@material-ui/styles";
 const imageWidth = '220px';
 const minFormControlWidth = '40vh';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   loginCard: {
     display: 'flex',
   },

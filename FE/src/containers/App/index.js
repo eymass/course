@@ -10,14 +10,10 @@
 import React from 'react';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
-import KeepItSimpleButPowerfull from "components/Common/KeepItSimpleButPowerfull/KeepItSimpleButPowerfull";
 import LoginPage from "../LoginPage";
 
 function App() {
-
-  return (
-        <LoginPage />
-  );
+  return (<LoginPage />);
 }
 
 App.propTypes = {};
