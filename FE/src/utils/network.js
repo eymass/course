@@ -6,72 +6,67 @@ axios.interceptors.response.use(
   response => response.data
 );
 
-const baseUrl = BASE_URL;
-
-/**
- * Get Data
- * @param action
- * @param params
- */
-export function* getData(action, params = {}) {
-  const url = baseUrl + action;
+function networkService() {
+  const baseUrl = BASE_URL;
   const headers = {
     Authorization: `Bearer ${getDataFromStorage().token}`,
   };
-  const config = { headers, url, params };
-  return yield axios
-    .get(url, config)
-    .then()
-    .catch();
-}
 
-/**
- *
- * @param action
- * @param body
- */
-export function* postData(action, body) {
-  try {
+  function setToken(token) {
+    headers.Authorization = `Bearer ${token}`;
+  }
+
+  /**
+   * Get Data
+   * @param action
+   * @param params
+   */
+  function* getData(action, params = {}) {
     const url = baseUrl + action;
-    const headers = {
-      Authorization: `Bearer ${getDataFromStorage().token}`,
-    };
+    const config = { headers, url, params };
+    return yield axios
+        .get(url, config);
+  }
+
+  /**
+   *
+   * @param action
+   * @param body
+   */
+  function* postData(action, body) {
+    const url = baseUrl + action;
     const config = { headers, url };
     return yield axios.post(url, body, config);
-  } catch (error) {
-    return { error: error && error.message ? error.message : 'Error' };
   }
-}
 
-/**
- * delete data
- * @param action
- */
-export function* deleteData(action) {
-  try {
+  /**
+   * delete data
+   * @param action
+   */
+  function* deleteData(action) {
     const url = baseUrl + action;
-    const headers = {
-      Authorization: `Bearer ${getDataFromStorage().token}`,
-    };
     const config = { headers, url };
     return yield axios.delete(url, config);
-  } catch (error) {
-    return { error: error && error.message ? error.message : 'Error' };
   }
-}
 
-/**
- * Put data to server
- */
-export function* putData(action, body) {
-  try {
+  /**
+   * Put data to server
+   */
+  function* putData(action, body) {
     const url = `${baseUrl + action}`;
-    const headers = {
-      Authorization: `Bearer ${getDataFromStorage().token}`,
-    };
     const config = { headers, url };
     return yield axios.put(url, body, config);
-  } catch (error) {
-    return { error: error && error.message ? error.message : 'Error' };
   }
+
+  return {
+    putData,
+    getData,
+    postData,
+    deleteData,
+    setToken,
+  };
+
 }
+
+const network  = networkService();
+export default network;
