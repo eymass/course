@@ -1,5 +1,3 @@
-import { BASE_URL } from './environment';
-
 export const URLS = {
   AUTHENTICATE: { url: 'auth', subUrl: '', method: 'POST' },
   USER_DATA: { url: 'users', subUrl: 'me', method: 'GET' },
