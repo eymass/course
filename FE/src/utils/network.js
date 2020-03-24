@@ -1,72 +1,51 @@
 import axios from 'axios';
-import { getDataFromStorage } from './cookies';
-import { BASE_URL } from './environment';
+import {BASE_URL} from "./environment";
 
 axios.interceptors.response.use(
   response => response.data
 );
 
 function networkService() {
-  const baseUrl = BASE_URL;
-  const headers = {
-    Authorization: `Bearer ${getDataFromStorage().token}`,
-  };
+    const headers = {};
+    const baseUrl = BASE_URL;
 
-  function setToken(token) {
-    headers.Authorization = `Bearer ${token}`;
-  }
+    function setCredentials(token) {
+        headers.Authorization = `Bearer ${token}`;
+    }
 
-  /**
-   * Get Data
-   * @param action
-   * @param params
-   */
-  function* getData(action, params = {}) {
-    const url = baseUrl + action;
-    const config = { headers, url, params };
-    return yield axios
-        .get(url, config);
-  }
+    function* postData(action, body) {
+        const url = baseUrl + action;
+        const config = { headers };
+        return yield axios.post(url, body, config);
+    }
 
-  /**
-   *
-   * @param action
-   * @param body
-   */
-  function* postData(action, body) {
-    const url = baseUrl + action;
-    const config = { headers, url };
-    return yield axios.post(url, body, config);
-  }
+    function* getData(action, params) {
+        const url = baseUrl + action;
+        const config = { headers, params };
+        return yield axios.get(url, config);
+    }
 
-  /**
-   * delete data
-   * @param action
-   */
-  function* deleteData(action) {
-    const url = baseUrl + action;
-    const config = { headers, url };
-    return yield axios.delete(url, config);
-  }
+    function* putData(action, body) {
+        const url = baseUrl + action;
+        const config = { headers };
+        return yield axios.put(url, body, config);
+    }
 
-  /**
-   * Put data to server
-   */
-  function* putData(action, body) {
-    const url = `${baseUrl + action}`;
-    const config = { headers, url };
-    return yield axios.put(url, body, config);
-  }
+    function* deleteData(action) {
+        const url = baseUrl + action;
+        const config = { headers };
+        return yield axios.delete(url, config);
+    }
 
-  return {
-    putData,
-    getData,
-    postData,
-    deleteData,
-    setToken,
-  };
-
+    return {
+        setCredentials,
+        getData,
+        postData,
+        putData,
+        deleteData,
+    }
 }
 
-const network  = networkService();
+const network = networkService();
+
 export default network;

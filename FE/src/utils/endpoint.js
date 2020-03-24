@@ -1,8 +1,6 @@
-import { BASE_URL } from './environment';
-
 export const URLS = {
-  AUTHENTICATE: { url: 'auth', subUrl: '', method: 'POST' },
-  USER_DATA: { url: 'users', subUrl: 'me', method: 'GET' },
+  AUTHENTICATE: { url: 'auth', subUrl: '' },
+  USER_DATA: { url: 'users', subUrl: 'me' },
 };
 
 export const getEndpointURL = key => {
