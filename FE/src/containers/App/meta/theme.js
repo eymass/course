@@ -1,21 +1,19 @@
 import { createMuiTheme } from '@material-ui/core/styles';
+import { DEFAULT_LOCALE, localeData } from 'utils/languageDefaults';
 
-// Create Material-UI theme
-// eslint-disable-next-line no-unused-vars
 const mainColor = '#0088b1';
 const invertMainColor = '#fafafa';
+const defaultFontAndDirection = localeData[DEFAULT_LOCALE];
 
-// eslint-disable-next-line no-unused-vars
-export const getTheme = ({ fontFamily, direction }) =>
+export const getTheme = (fontFamily = defaultFontAndDirection.fontFamily, type = 'light') =>
   createMuiTheme({
     palette: {
       common: {
         black: '#272727',
         white: '#fafafa',
-        recipe: '#FFCC00',
         paleWhite: '#f4f4f4',
       },
-      type: 'light',
+      type: type,
       primary: {
         light: '#1f92cf',
         main: mainColor,
@@ -60,10 +58,7 @@ export const getTheme = ({ fontFamily, direction }) =>
         hint: 'rgba(0, 0, 0, 0.38)',
       },
       background: {
-        paper: '#fff',
-        default: '#fff',
-        level2: '#f5f5f5',
-        level1: '#fff',
+
       },
       action: {
         active: '#fff',
@@ -237,12 +232,10 @@ export const getTheme = ({ fontFamily, direction }) =>
       },
       MuiPaper: {
         elevation2: {
-          backgroundColor: '#f7f8f9',
           boxShadow: 'none',
           padding: '1.5rem',
         },
         elevation3: {
-          backgroundColor: mainColor,
           color: invertMainColor,
           boxShadow:
             '0 2px 0px 0px rgba(0, 0, 0, 0.01), 0px 2px 3px 0px rgba(0, 0, 0, 0.05), 0px 1px 8px 0px rgba(0,0,0,0.1)',
@@ -287,15 +280,3 @@ export const getTheme = ({ fontFamily, direction }) =>
     },
     spacing: 2,
   });
-
-export const statusColor = {
-  onGoing: '#22bb33',
-  canceled: '#bb2124',
-  completed: '#f0ad4e',
-};
-
-export const statusIcons = {
-  onGoing: 'PlayForWork',
-  canceled: 'Stop',
-  completed: 'Done',
-};

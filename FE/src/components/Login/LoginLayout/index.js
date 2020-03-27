@@ -6,10 +6,8 @@
 
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-// import PropTypes from 'prop-types';
-// import styled from 'styled-components';
+import Paper from '@material-ui/core/Paper';
 
-/* eslint-disable react/prop-types */
 function LoginLayout({ children }) {
   return (
     <Grid
@@ -19,7 +17,9 @@ function LoginLayout({ children }) {
       alignItems="center"
       style={{ height: '100vh', minWidth: '50vw' }}
     >
+      <Paper variant="elevation">
       {children}
+      </Paper>
     </Grid>
   );
 }

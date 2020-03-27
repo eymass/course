@@ -9,11 +9,12 @@
 
 import React from 'react';
 import { compose } from 'redux';
+import ThemeProvider  from '@material-ui/styles';
 import { connect } from 'react-redux';
 import LoginPage from "../LoginPage";
 
-function App() {
-  return (<LoginPage />);
+function App({ theme }) {
+  return (<ThemeProvider><LoginPage /></ThemeProvider>);
 }
 
 App.propTypes = {};
