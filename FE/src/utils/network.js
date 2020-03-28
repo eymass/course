@@ -2,7 +2,7 @@ import axios from 'axios';
 import {BASE_URL} from "./environment";
 
 axios.interceptors.response.use(
-  response => response.data
+    response => response.data
 );
 
 function networkService() {
