@@ -18,14 +18,14 @@ passport.use(
   'local',
   new LocalStrategy(
     {
-      usernameField: 'email',
+      usernameField: 'username',
       passwordField: 'password'
     },
-    (email, password, done) => {
+    (username, password, done) => {
       console.log('p.passwordStrategy Begin...');
       try {
-        console.log('p.passwordStrategy find user ' + email);
-        getDefaultResponse({ email, name: 'user' }, done, { email, password });
+        console.log('p.passwordStrategy find user ' + username);
+        getDefaultResponse({ username, name: 'user' }, done, { username, password });
       } catch (e) {
         console.log('password catch: ' + JSON.stringify(e));
         return null;
