@@ -30,6 +30,9 @@ export const styles = makeStyles(theme => ({
         width: drawerWidth,
         flexShrink: 0,
     },
+    title: {
+        flexGrow: 1,
+    },
     drawerPaper: {
         width: drawerWidth,
     },

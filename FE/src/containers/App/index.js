@@ -8,17 +8,25 @@
  */
 
 import React from 'react';
+import PropTypes from 'prop-types';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
 import LoginPage from "../LoginPage";
+import { getAuth } from 'containers/AuthContainer/meta/selectors'
 
-function App() {
+function App({ auth }) {
   return (<LoginPage />);
 }
 
-App.propTypes = {};
+App.propTypes = {
+  auth: PropTypes.object,
+};
 
-const withConnect = connect();
+const mapStateToProps = () => ({
+  auth: getAuth,
+});
+
+const withConnect = connect(mapStateToProps);
 
 export default compose(
   withConnect,
