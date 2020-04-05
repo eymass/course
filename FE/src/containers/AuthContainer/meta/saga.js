@@ -3,7 +3,7 @@ import * as constants from "./constants";
 import * as actions from "./actions";
 import network from 'utils/network';
 import { getEndpointURL } from 'utils/endpoint';
-import { saveDataToStorage } from 'utils/cookies';
+import { saveDataToStorage, clearDataFromStorage } from 'utils/cookies';
 import makeSelectLoginPage from "../../LoginPage/meta/selectors";
 
 function* handleGetAuth() {
@@ -19,8 +19,13 @@ function* handleGetAuth() {
     }
 }
 
+function* handleLogout() {
+    yield call(clearDataFromStorage);
+}
+
 export default function*() {
     yield all([
         yield takeLatest(constants.GET_AUTH, handleGetAuth),
+        yield takeLatest(constants.LOGOUT, handleLogout),
     ]);
 }

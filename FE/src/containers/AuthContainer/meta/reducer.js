@@ -21,7 +21,10 @@ const Auth = (state = initialState, action) =>
                 draft.user = action.payload.user;
                 draft.isAuthenticated = true;
                 break;
-            case constants.GET_AUTH_ERROR:
+            case constants.LOGOUT:
+                delete draft.token;
+                delete draft.user;
+                draft.isAuthenticated = false;
                 break;
             default:
                 break;

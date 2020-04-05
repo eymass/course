@@ -1,7 +1,9 @@
 import { connect } from 'react-redux';
 import Navigation from './components/Navigation';
+import { logout } from 'containers/AuthContainer/meta/actions';
+import {getUser} from "containers/AuthContainer/meta/selectors";
 
-const mapStateToProps = () => ({
+const mapStateToProps = (state) => ({
     routes: [
         {
             key: 'home',
@@ -11,10 +13,13 @@ const mapStateToProps = () => ({
             key: 'vacations',
             path: 'vacations',
             text: 'Vacations' }
-        ]
+        ],
+    user: getUser(state),
 });
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = ({
+    logout,
+});
 
 const NavigationContainer = connect(
     mapStateToProps,

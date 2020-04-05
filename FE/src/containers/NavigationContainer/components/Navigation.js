@@ -28,7 +28,7 @@ const icons = {
     'vacations': <VacationsIcon />,
 };
 
-function Navigation({ routes, user }) {
+function Navigation({ routes, user, logout }) {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
@@ -75,8 +75,8 @@ function Navigation({ routes, user }) {
                     <Typography variant="h6" noWrap className={classes.title}>
                         Vacations
                     </Typography>
-                    {user && <Typography variant="h6" noWrap>{user.email}</Typography>}
-                    {user && <Button color="inherit">Sign Out</Button>}
+                    {user && <Typography variant="h6" noWrap>{user.username}</Typography>}
+                    {user && <Button onClick={logout} color="inherit">Sign Out</Button>}
 
                 </Toolbar>
             </AppBar>
