@@ -1,5 +1,7 @@
 import { Router } from 'express';
 import auth from './Auth';
+import vacations from './Vacations';
+import profile from './profile';
 
 const router = new Router();
 
@@ -32,5 +34,7 @@ const router = new Router();
  */
 
 router.use('/auth', auth);
+router.use('/vacations', vacations);
+router.use('/profile', profile);
 
 export default router;

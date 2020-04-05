@@ -150,8 +150,8 @@ module.exports = function(webpackEnv) {
     output: {
       path: isEnvProduction ? paths.appBuild : undefined,
       publicPath: "/",
-      filename: 'runtime.js',
-      chunkFilename:  '[name].runtime.js',
+      filename: 'bundle.js',
+      chunkFilename:  '[name].bundle.js',
     },
     plugins: [
       // Hash the files using MD5 so that their names change when the content changes.
@@ -160,13 +160,13 @@ module.exports = function(webpackEnv) {
       new webpack.DefinePlugin({}),
 
       // Generate an external css file with a hash in the filename
-      //new ExtractTextPlugin('runtime.css'), DEPRECATED SUPPORT IN WEBPACK
+      //new ExtractTextPlugin('bundle.css'), DEPRECATED SUPPORT IN WEBPACK
 
       // changed from ExtractTextPlugin to MiniCssExtractPlugin
       new MiniCssExtractPlugin({
         // Options similar to the same options in webpackOptions.output
         // all options are optional
-        filename: 'runtime.css',
+        filename: 'bundle.css',
         ignoreOrder: false, // Enable to remove warnings about conflicting order
       }),
 

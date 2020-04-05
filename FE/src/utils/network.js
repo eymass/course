@@ -1,12 +1,16 @@
 import axios from 'axios';
 import {BASE_URL} from "./environment";
+import {getDataFromStorage} from "./cookies";
 
 axios.interceptors.response.use(
     response => response.data
 );
 
 function networkService() {
-    const headers = {};
+    const { token } = getDataFromStorage();
+    const headers = {
+        Authorization: `Bearer ${token}`
+    };
     const baseUrl = BASE_URL;
 
     function setCredentials(token) {
@@ -21,6 +25,7 @@ function networkService() {
 
     function* getData(action, params) {
         const url = baseUrl + action;
+        debugger;
         const config = { headers, params };
         return yield axios.get(url, config);
     }

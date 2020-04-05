@@ -13,6 +13,7 @@ function* handleGetAuth() {
         const action = getEndpointURL('AUTHENTICATE');
         const response = yield call(network.postData, action, request);
         yield call(saveDataToStorage, response);
+        network.setCredentials(response.token);
         yield put(actions.getAuthSuccess(response))
     } catch(error) {
         yield put(actions.getAuthError(error))
