@@ -14,3 +14,7 @@ export const getVacationsError = payload => ({
     type: constants.GET_VACATIONS_ERROR,
     payload,
 });
+
+export const updateShowDiscounts = () => ({
+    type: constants.UPDATE_SHOW_DISCOUNTS,
+});

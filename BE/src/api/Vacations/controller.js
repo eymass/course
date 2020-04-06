@@ -149,4 +149,4 @@ const vacationsData = [
   }
 ];
 
-export const vacations = (req, res, next) => res.send(vacationsData);
+export const vacations = (req, res, next) => res.send({vacations: vacationsData, discounts: [vacationsData[0], vacationsData[1]]});
