@@ -21,6 +21,8 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Button from '@material-ui/core/Button';
 import {styles} from "../meta/styles";
 import NavItem from "./NavItem";
+import Switch from "@material-ui/core/Switch";
+import VacationsContainer from "../../VacationsContainer";
 
 const useStyles = styles;
 const icons = {
@@ -28,12 +30,13 @@ const icons = {
     'vacations': <VacationsIcon />,
 };
 
-function Navigation({ routes, user, logout }) {
+function Navigation({ routes, user, logout, updateThemeMode }) {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
     const [items, setItems] = React.useState([]);
     const [selectedKey, setSelectedKey] = React.useState(routes[0].key);
+    const [mode, setMode] = React.useState('light');
 
     useEffect(() => {
         const drawerItems = routes.map(route => (
@@ -51,6 +54,16 @@ function Navigation({ routes, user, logout }) {
 
     const handleDrawerClose = () => {
         setOpen(false);
+    };
+
+    const changeMode = () => {
+        if (mode === 'light') {
+            setMode('dark');
+            updateThemeMode('dark');
+        } else {
+            updateThemeMode('light');
+            setMode('light');
+        }
     };
 
     return (
@@ -75,6 +88,13 @@ function Navigation({ routes, user, logout }) {
                     <Typography variant="h6" noWrap className={classes.title}>
                         Vacations
                     </Typography>
+                    <Switch
+                        checked={mode === 'light'}
+                        onChange={changeMode}
+                        color="secondary"
+                        name="checkedB"
+                        inputProps={{ 'aria-label': 'primary checkbox' }}
+                    />
                     {user && <Typography variant="h6" noWrap>{user.username}</Typography>}
                     {user && <Button onClick={logout} color="inherit">Sign Out</Button>}
 
@@ -113,7 +133,7 @@ function Navigation({ routes, user, logout }) {
                     [classes.contentShift]: open,
                 })}
             >
-                <div className={classes.drawerHeader} />
+               <VacationsContainer />
             </main>
         </div>
     );
