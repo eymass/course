@@ -18,7 +18,7 @@ const useStyles = makeStyles({
     },
 });
 
-function Vacation({ vacation }) {
+function Order({ order }) {
     const classes = useStyles();
     return (
         <Card className={classes.root}>
@@ -26,15 +26,15 @@ function Vacation({ vacation }) {
                 <CardMedia
                     component="img"
                     className={classes.media}
-                    src={vacation.image}
-                    title={vacation.description}
+                    src={order.image}
+                    title={order.description}
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                        {vacation.destination}
+                        {order.amount}
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
-                        {vacation.description}
+                        {order.description}
                     </Typography>
                 </CardContent>
             </CardActionArea>
@@ -42,8 +42,8 @@ function Vacation({ vacation }) {
     );
 }
 
-Vacation.propTypes = {
-    vacation: PropTypes.object
+Order.propTypes = {
+    order: PropTypes.object
 };
 
-export default Vacation;
+export default Order;

@@ -1,5 +1,6 @@
 import React, {memo, useEffect} from 'react';
 import clsx from 'clsx';
+import PropTypes from 'prop-types';
 import { useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -22,15 +23,21 @@ import Button from '@material-ui/core/Button';
 import {styles} from "../meta/styles";
 import NavItem from "./NavItem";
 import Switch from "@material-ui/core/Switch";
-import VacationsContainer from "../../VacationsContainer";
+import VacationsContainer from "containers/VacationsContainer";
+import {Link} from "react-router-dom";
+import {Switch as RouterSwitch} from "react-router-dom";
+import LoginPage from "containers/LoginPage";
+import ProfileContainer from "containers/ProfileContainer";
+import PrivateRoute from "../../../components/Routes/PrivateRoute";
+import PublicRoute from "../../../components/Routes/PublicRoute";
 
 const useStyles = styles;
 const icons = {
-    'home': <HomeIcon />,
+    'profile': <HomeIcon />,
     'vacations': <VacationsIcon />,
 };
 
-function Navigation({ routes, user, logout, updateThemeMode }) {
+function Navigation({ routes, user, logout, updateThemeMode, isAuthenticated }) {
     const classes = useStyles();
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
@@ -40,10 +47,12 @@ function Navigation({ routes, user, logout, updateThemeMode }) {
 
     useEffect(() => {
         const drawerItems = routes.map(route => (
-            <NavItem onClick={() => setSelectedKey(route.key)}
+            <Link to={route.path}>
+                <NavItem onClick={() => setSelectedKey(route.key)}
                      selectedKey={selectedKey}
                      icon={icons[route.key]}
-                     item={route} />)
+                     item={route} />
+            </Link>)
         );
         setItems(drawerItems)
     }, [routes, selectedKey]);
@@ -133,14 +142,18 @@ function Navigation({ routes, user, logout, updateThemeMode }) {
                     [classes.contentShift]: open,
                 })}
             >
-               <VacationsContainer />
+               <RouterSwitch>
+                   <PrivateRoute isAuthenticated={isAuthenticated} path="/" exact Component={VacationsContainer} />
+                   <PublicRoute isAuthenticated={isAuthenticated} path="/login" exact Component={LoginPage} />
+                   <PrivateRoute isAuthenticated={isAuthenticated} path="/profile" exact Component={ProfileContainer} />
+               </RouterSwitch>
             </main>
         </div>
     );
 }
 
 Navigation.propTypes = {
-
+    isAuthenticated: PropTypes.bool
 };
 
 export default memo(Navigation);
