@@ -13,7 +13,7 @@ const useStyles = makeStyles({
     },
 });
 
-function Vacations({ getVacations, updateShowDiscounts, vacations }) {
+function Vacations({ getVacations, updateShowDiscounts, vacations, discounts, showDiscounts }) {
 
     useEffect(() => {
         if (getVacations) {
@@ -25,7 +25,7 @@ function Vacations({ getVacations, updateShowDiscounts, vacations }) {
 
     return (
         <>
-            <Discounts updateShowDiscounts={updateShowDiscounts} vacations={vacations} />
+            <Discounts updateShowDiscounts={updateShowDiscounts} discounts={discounts} showDiscounts={showDiscounts} />
             <div className={classes.vacationsRoot}>
                 <VacationsItems vacations={vacations} />
             </div>
@@ -35,7 +35,10 @@ function Vacations({ getVacations, updateShowDiscounts, vacations }) {
 
 Vacations.propTypes = {
     getVacations: PropTypes.func,
+    updateShowDiscounts: PropTypes.func,
     vacations: PropTypes.array,
+    showDiscounts: PropTypes.bool,
+    discounts: PropTypes.array,
 };
 
 export default Vacations;

@@ -4,7 +4,7 @@ import Vacation from "./Vacation";
 
 const VacationsItems = ({ vacations }) => {
     return (
-        vacations.vacations.map(vacation => (
+        vacations.map(vacation => (
                 <Vacation vacation={vacation} />))
     );
 };
