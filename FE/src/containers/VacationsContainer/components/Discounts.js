@@ -35,10 +35,7 @@ const Discounts = ({ vacations, updateShowDiscounts }) => {
                 name="checkedB"
                 inputProps={{ 'aria-label': 'primary checkbox' }}
             />
-            {vacations.showDiscounts ?
-                <DiscountsItems vacations={vacations} />
-            :
-                <Paper classes={{ root: classes.paper }} > Discounts are hidden</Paper>}
+            <DiscountsItems showDiscounts={vacations.showDiscounts} vacations={vacations} classes={classes} />
         </>
     );
 };
