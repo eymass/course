@@ -32,8 +32,9 @@ const useStyles = makeStyles({
     },
 });
 
-function OrdersHistory({ orders }) {
+function OrdersHistory({ profile }) {
     const classes = useStyles();
+    const { orders } = profile;
 
     return (
         <TableContainer component={Paper}>

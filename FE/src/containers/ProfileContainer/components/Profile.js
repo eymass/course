@@ -2,8 +2,10 @@ import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import BasicInfo from "./BasicInfo";
 import OrdersHistory from "./OrdersHistory";
+import Chip from "@material-ui/core/Chip";
+import Grid from "@material-ui/core/Grid";
 
-function Profile({ user, orders, getProfile }) {
+function Profile({ profile, getProfile, updateUserStatus }) {
 
     useEffect(() => {
         if(getProfile) {
@@ -11,10 +13,16 @@ function Profile({ user, orders, getProfile }) {
         }
     }, []);
 
-    return <div >
-        <BasicInfo user={user} />
-        <OrdersHistory orders={orders} />
-    </div>;
+    return (
+        <Grid container direction="column" alignItems="center">
+            <Chip  onClick={updateUserStatus} label={profile.status} style={{
+                backgroundColor: profile.status === "active" ? "green" : "",
+                color: profile.status === "active" ? "white" : ""
+                 }} />
+            <BasicInfo profile={profile} />
+            <OrdersHistory profile={profile} />
+        </Grid>
+    );
 }
 
 Profile.propTypes = {

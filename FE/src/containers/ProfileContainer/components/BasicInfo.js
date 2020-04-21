@@ -19,7 +19,8 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const BasicInfo = ({ user }) => {
+const BasicInfo = ({ profile }) => {
+    const { user } = profile;
     const classes = useStyles();
     return (<Paper classes={{root: classes.paper}}>
         <Avatar alt="Remy Sharp" className={classes.large} src={user.avatar} />
