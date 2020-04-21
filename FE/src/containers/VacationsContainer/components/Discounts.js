@@ -21,7 +21,7 @@ const useStyles = makeStyles({
     },
 });
 
-const Discounts = ({ vacations, updateShowDiscounts }) => {
+const Discounts = ({ showDiscounts, updateShowDiscounts, discounts }) => {
 
     const classes = useStyles();
 
@@ -29,13 +29,16 @@ const Discounts = ({ vacations, updateShowDiscounts }) => {
         <>
             <Typography variant="h6" component="h6">Discounts</Typography>
             <Switch
-                checked={vacations.showDiscounts}
+                checked={showDiscounts}
                 onChange={updateShowDiscounts}
                 color="primary"
                 name="checkedB"
                 inputProps={{ 'aria-label': 'primary checkbox' }}
             />
-            <DiscountsItems showDiscounts={vacations.showDiscounts} vacations={vacations} classes={classes} />
+            {showDiscounts ?
+                <DiscountsItems discounts={discounts} />
+            :
+                <Paper classes={{ root: classes.paper }} > Discounts are hidden</Paper>}
         </>
     );
 };

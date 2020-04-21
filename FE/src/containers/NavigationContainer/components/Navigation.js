@@ -30,6 +30,7 @@ import LoginPage from "containers/LoginPage";
 import ProfileContainer from "containers/ProfileContainer";
 import PrivateRoute from "../../../components/Routes/PrivateRoute";
 import PublicRoute from "../../../components/Routes/PublicRoute";
+import VacationDetailsContainer from "containers/VacationDetailsContainer";
 
 const useStyles = styles;
 const icons = {
@@ -146,6 +147,7 @@ function Navigation({ routes, user, logout, updateThemeMode, isAuthenticated }) 
                    <PrivateRoute isAuthenticated={isAuthenticated} path="/" exact Component={VacationsContainer} />
                    <PublicRoute isAuthenticated={isAuthenticated} path="/login" exact Component={LoginPage} />
                    <PrivateRoute isAuthenticated={isAuthenticated} path="/profile" exact Component={ProfileContainer} />
+                   <PrivateRoute isAuthenticated={isAuthenticated} path="/vacation/:id" exact Component={VacationDetailsContainer} />
                </RouterSwitch>
             </main>
         </div>
