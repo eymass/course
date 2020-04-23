@@ -20,6 +20,9 @@ const Vacations = (state = initialState, action) =>
                 break;
             case constants.GET_VACATIONS_ERROR:
                 break;
+            case constants.UPDATE_SELECTED_VACATION:
+                draft.selectedVacation = action.vacationId;
+                break;
             default:
                 break;
         }

@@ -18,3 +18,8 @@ export const getVacationsError = payload => ({
 export const updateShowDiscounts = () => ({
     type: constants.UPDATE_SHOW_DISCOUNTS,
 });
+
+export const updateSelectedVacation = vacationId => ({
+    type: constants.UPDATE_SELECTED_VACATION,
+    vacationId,
+});

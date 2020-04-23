@@ -1,8 +1,9 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useCallback} from 'react';
 import PropTypes from 'prop-types';
 import {makeStyles} from "@material-ui/core/styles";
 import Discounts from "./Discounts";
 import VacationsItems from "./VacationsItems";
+
 
 const useStyles = makeStyles({
     vacationsRoot: {
@@ -13,7 +14,7 @@ const useStyles = makeStyles({
     },
 });
 
-function Vacations({ getVacations, updateShowDiscounts, vacations, discounts, showDiscounts }) {
+function Vacations({ getVacations, updateShowDiscounts, vacations, discounts, showDiscounts, selectedVacation, updateSelectedVacation }) {
 
     useEffect(() => {
         if (getVacations) {
@@ -23,11 +24,15 @@ function Vacations({ getVacations, updateShowDiscounts, vacations, discounts, sh
 
     const classes = useStyles();
 
+    const handleVacationOnClick = useCallback((vacationId) => updateSelectedVacation(vacationId), []);
+
+    console.count("Vacations");
+
     return (
         <>
             <Discounts updateShowDiscounts={updateShowDiscounts} discounts={discounts} showDiscounts={showDiscounts} />
             <div className={classes.vacationsRoot}>
-                <VacationsItems vacations={vacations} />
+                <VacationsItems handleVacationOnClick={handleVacationOnClick} vacations={vacations} />
             </div>
         </>
     );
@@ -39,6 +44,7 @@ Vacations.propTypes = {
     vacations: PropTypes.array,
     showDiscounts: PropTypes.bool,
     discounts: PropTypes.array,
+    selectedVacation: PropTypes.string,
 };
 
 export default Vacations;

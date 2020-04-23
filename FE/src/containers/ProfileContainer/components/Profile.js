@@ -13,14 +13,16 @@ function Profile({ profile, getProfile, updateUserStatus }) {
         }
     }, []);
 
+    console.count("Profile");
+
     return (
         <Grid container direction="column" alignItems="center">
             <Chip  onClick={updateUserStatus} label={profile.status} style={{
                 backgroundColor: profile.status === "active" ? "green" : "",
                 color: profile.status === "active" ? "white" : ""
                  }} />
-            <BasicInfo profile={profile} />
-            <OrdersHistory profile={profile} />
+            <BasicInfo user={profile.user} />
+            <OrdersHistory orders={profile.orders} />
         </Grid>
     );
 }

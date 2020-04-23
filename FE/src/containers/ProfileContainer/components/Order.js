@@ -20,6 +20,7 @@ const useStyles = makeStyles({
 
 function Order({ order }) {
     const classes = useStyles();
+    console.count("Order");
     return (
         <Card className={classes.root}>
             <CardActionArea>
