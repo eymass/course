@@ -23,14 +23,15 @@ import Button from '@material-ui/core/Button';
 import {styles} from "../meta/styles";
 import NavItem from "./NavItem";
 import Switch from "@material-ui/core/Switch";
-import VacationsContainer from "containers/VacationsContainer";
 import {Link} from "react-router-dom";
 import {Switch as RouterSwitch} from "react-router-dom";
-import LoginPage from "containers/LoginPage";
-import ProfileContainer from "containers/ProfileContainer";
 import PrivateRoute from "../../../components/Routes/PrivateRoute";
 import PublicRoute from "../../../components/Routes/PublicRoute";
-import VacationDetailsContainer from "containers/VacationDetailsContainer";
+import Vacations from 'containers/VacationsContainer/dynamic';
+import VacationDetails from 'containers/VacationDetailsContainer/dynamic';
+import LoginPage from 'containers/LoginPage/dynamic';
+import Profile from 'containers/ProfileContainer/dynamic';
+
 
 const useStyles = styles;
 const icons = {
@@ -144,10 +145,22 @@ function Navigation({ routes, user, logout, updateThemeMode, isAuthenticated }) 
                 })}
             >
                <RouterSwitch>
-                   <PrivateRoute isAuthenticated={isAuthenticated} path="/" exact Component={VacationsContainer} />
-                   <PublicRoute isAuthenticated={isAuthenticated} path="/login" exact Component={LoginPage} />
-                   <PrivateRoute isAuthenticated={isAuthenticated} path="/profile" exact Component={ProfileContainer} />
-                   <PrivateRoute isAuthenticated={isAuthenticated} path="/vacation/:id" exact Component={VacationDetailsContainer} />
+                   <PrivateRoute
+                       isAuthenticated={isAuthenticated}
+                       path="/" exact
+                       Component={Vacations} />
+                   <PublicRoute
+                       isAuthenticated={isAuthenticated}
+                       path="/login" exact
+                       Component={LoginPage} />
+                   <PrivateRoute
+                       isAuthenticated={isAuthenticated}
+                       path="/profile" exact
+                       Component={Profile} />
+                   <PrivateRoute
+                       isAuthenticated={isAuthenticated}
+                       path="/vacation/:id" exact
+                       Component={VacationDetails} />
                </RouterSwitch>
             </main>
         </div>
