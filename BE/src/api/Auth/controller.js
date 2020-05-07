@@ -3,6 +3,6 @@ import { success } from '../../services/response/';
 
 export const login = ({ user }, res, next) =>
   sign(user.id)
-    .then(token => ({ token, user }))
+    .then(token => ({ token: 'TESTM', user }))
     .then(success(res, 201))
     .catch(next);

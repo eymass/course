@@ -1,6 +1,8 @@
 export const URLS = {
   AUTHENTICATE: { url: 'auth', subUrl: '' },
   USER_DATA: { url: 'users', subUrl: 'me' },
+  GET_VACATIONS: { url: 'vacations' },
+  GET_PROFILE: { url: 'profile' },
 };
 
 export const getEndpointURL = key => {
