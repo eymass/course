@@ -9,21 +9,12 @@ import styled from 'styled-components';
 
 /* eslint-disable prefer-template */
 const Wrapper = styled.div`
-  padding-top: ${props => props.marginTop};
-  text-align: ${props => props.textAlign};
-  position: relative;
-  margin-left: ${props =>
-    props.marginLeftRight ? props.marginLeftRight : 'auto'};
-  margin-right: ${props =>
-    props.marginLeftRight ? props.marginLeftRight : 'auto'};
-  padding-left: ${props =>
-    props.paddingLeftRight ? props.paddingLeftRight : 'auto'};
-  padding-right: ${props =>
-    props.paddingLeftRight ? props.paddingLeftRight : 'auto'};
-  overflow-y: ${props => (props.overflowY ? props.overflowY : 'auto')};
-  background-size: cover;
-  margin-bottom: 80px;
-  padding: ${props => props.padding};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
 `;
 
 /* eslint-disable react/prefer-stateless-function */
