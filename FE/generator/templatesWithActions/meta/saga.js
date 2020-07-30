@@ -1,13 +1,10 @@
-import { all, takeLatest, put, call } from 'redux-saga/effects';
+import { all, takeLatest, put } from 'redux-saga/effects';
 import * as constants from "./constants";
 import * as actions from "./actions";
-import {getData} from "utils/network";
 
 function* handleGetCONT_CAMEL_NAME(action) {
     try {
-        // todo URL
-        const res = yield call(getData, 'URL');
-        yield put(actions.getCONT_CAMEL_NAMESuccess(res))
+        yield put(actions.getCONT_CAMEL_NAMESuccess())
     } catch(error) {
         yield put(actions.getCONT_CAMEL_NAMEError(error))
     }
