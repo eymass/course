@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import auth from './Auth';
 import vacations from './Vacations';
-import profile from './profile';
+import profile from './Profile';
 
 const router = new Router();
 
