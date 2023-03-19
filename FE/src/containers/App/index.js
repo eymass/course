@@ -15,7 +15,7 @@ import DynamicForm from "../../hooks/DynamicForm";
 import HomePage from "../../hooks/HomePage";
 
 function App() {
-  return (<HomePage />);
+  return (<LoginPage />);
 }
 
 App.propTypes = {};
